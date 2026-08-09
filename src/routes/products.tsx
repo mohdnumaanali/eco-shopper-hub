@@ -11,7 +11,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useFavorites } from "@/hooks/useFavorites";
 import { productsQuery } from "@/lib/eco";
 
-type ProductSearch = { q?: string };
+type ProductSearch = { q?: string | undefined };
 
 const CATEGORIES = [
   "All",
