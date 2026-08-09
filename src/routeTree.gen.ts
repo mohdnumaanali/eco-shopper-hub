@@ -11,6 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as FavoritesRouteImport } from './routes/favorites'
 import { Route as ProductsRouteImport } from './routes/products'
 import { Route as TipsRouteImport } from './routes/tips'
 import { Route as AlternativesProductIdRouteImport } from './routes/alternatives.$productId'
@@ -23,6 +26,21 @@ const IndexRoute = IndexRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FavoritesRoute = FavoritesRouteImport.update({
+  id: '/favorites',
+  path: '/favorites',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProductsRoute = ProductsRouteImport.update({
@@ -44,6 +62,9 @@ const AlternativesProductIdRoute = AlternativesProductIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
+  '/contact': typeof ContactRoute
+  '/favorites': typeof FavoritesRoute
   '/products': typeof ProductsRoute
   '/tips': typeof TipsRoute
   '/alternatives/$productId': typeof AlternativesProductIdRoute
@@ -51,6 +72,9 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
+  '/contact': typeof ContactRoute
+  '/favorites': typeof FavoritesRoute
   '/products': typeof ProductsRoute
   '/tips': typeof TipsRoute
   '/alternatives/$productId': typeof AlternativesProductIdRoute
@@ -59,19 +83,41 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
+  '/contact': typeof ContactRoute
+  '/favorites': typeof FavoritesRoute
   '/products': typeof ProductsRoute
   '/tips': typeof TipsRoute
   '/alternatives/$productId': typeof AlternativesProductIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/products' | '/tips' | '/alternatives/$productId'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/auth'
+    | '/contact'
+    | '/favorites'
+    | '/products'
+    | '/tips'
+    | '/alternatives/$productId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/products' | '/tips' | '/alternatives/$productId'
+  to:
+    | '/'
+    | '/about'
+    | '/auth'
+    | '/contact'
+    | '/favorites'
+    | '/products'
+    | '/tips'
+    | '/alternatives/$productId'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/auth'
+    | '/contact'
+    | '/favorites'
     | '/products'
     | '/tips'
     | '/alternatives/$productId'
@@ -80,6 +126,9 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AuthRoute: typeof AuthRoute
+  ContactRoute: typeof ContactRoute
+  FavoritesRoute: typeof FavoritesRoute
   ProductsRoute: typeof ProductsRoute
   TipsRoute: typeof TipsRoute
   AlternativesProductIdRoute: typeof AlternativesProductIdRoute
@@ -99,6 +148,27 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/favorites': {
+      id: '/favorites'
+      path: '/favorites'
+      fullPath: '/favorites'
+      preLoaderRoute: typeof FavoritesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/products': {
@@ -128,6 +198,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AuthRoute: AuthRoute,
+  ContactRoute: ContactRoute,
+  FavoritesRoute: FavoritesRoute,
   ProductsRoute: ProductsRoute,
   TipsRoute: TipsRoute,
   AlternativesProductIdRoute: AlternativesProductIdRoute,
