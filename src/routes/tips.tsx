@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { tipsQuery } from "@/lib/eco";
-import { ecoImage } from "@/lib/images";
+import { EcoPhoto } from "@/components/EcoPhoto";
 
 const CATEGORIES = ["All", "Reduce", "Reuse", "Recycle", "Sustainable Brands"];
 
@@ -59,11 +59,9 @@ function TipsPage() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {visible.map((tip) => (
             <article key={tip.id} className="surface-card overflow-hidden">
-              <img
-                src={ecoImage(tip.image_query, 640, 420)}
+              <EcoPhoto
+                query={tip.image_query}
                 alt={tip.title}
-                loading="lazy"
-                width={640}
                 height={420}
                 className="h-40 w-full object-cover"
               />

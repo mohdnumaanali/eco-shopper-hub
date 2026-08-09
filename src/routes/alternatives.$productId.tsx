@@ -7,7 +7,7 @@ import { EcoRating } from "@/components/EcoRating";
 import { Button } from "@/components/ui/button";
 import { useFavorites } from "@/hooks/useFavorites";
 import { alternativesQuery, productQuery, type Product } from "@/lib/eco";
-import { ecoImage } from "@/lib/images";
+import { EcoPhoto } from "@/components/EcoPhoto";
 
 export const Route = createFileRoute("/alternatives/$productId")({
   head: () => ({
@@ -83,11 +83,9 @@ function AlternativesPage() {
               key={item.id}
               className={`surface-card overflow-hidden ${item.is_alternative ? "ring-2 ring-primary/40" : ""}`}
             >
-              <img
-                src={ecoImage(item.image_query, 640, 420)}
+              <EcoPhoto
+                query={item.image_query}
                 alt={item.name}
-                loading="lazy"
-                width={640}
                 height={420}
                 className="h-44 w-full object-cover"
               />

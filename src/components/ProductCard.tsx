@@ -4,7 +4,7 @@ import { Heart, ArrowRight } from "lucide-react";
 import { EcoRating } from "@/components/EcoRating";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ecoImage } from "@/lib/images";
+import { EcoPhoto } from "@/components/EcoPhoto";
 import type { Product } from "@/lib/eco";
 import { cn } from "@/lib/utils";
 
@@ -18,12 +18,9 @@ export function ProductCard({ product, isFavorite, onToggleFavorite }: Props) {
   return (
     <article className="surface-card group flex flex-col overflow-hidden">
       <div className="relative aspect-4/3 overflow-hidden bg-muted">
-        <img
-          src={ecoImage(product.image_query, 640, 480)}
+        <EcoPhoto
+          query={product.image_query}
           alt={product.name}
-          loading="lazy"
-          width={640}
-          height={480}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
         <button
