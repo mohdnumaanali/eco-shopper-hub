@@ -14,7 +14,157 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      contact_messages: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          message: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          message: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          message?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      eco_tips: {
+        Row: {
+          body: string
+          category: string
+          created_at: string
+          id: string
+          image_query: string
+          title: string
+        }
+        Insert: {
+          body: string
+          category: string
+          created_at?: string
+          id?: string
+          image_query: string
+          title: string
+        }
+        Update: {
+          body?: string
+          category?: string
+          created_at?: string
+          id?: string
+          image_query?: string
+          title?: string
+        }
+        Relationships: []
+      }
+      favorites: {
+        Row: {
+          created_at: string
+          id: string
+          product_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          product_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          product_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "favorites_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      products: {
+        Row: {
+          alternative_for: string | null
+          category: string
+          created_at: string
+          description: string | null
+          eco_rating: number
+          id: string
+          image_query: string
+          is_alternative: boolean
+          material: string | null
+          name: string
+          price: number
+          recycling: string | null
+        }
+        Insert: {
+          alternative_for?: string | null
+          category: string
+          created_at?: string
+          description?: string | null
+          eco_rating?: number
+          id?: string
+          image_query: string
+          is_alternative?: boolean
+          material?: string | null
+          name: string
+          price?: number
+          recycling?: string | null
+        }
+        Update: {
+          alternative_for?: string | null
+          category?: string
+          created_at?: string
+          description?: string | null
+          eco_rating?: number
+          id?: string
+          image_query?: string
+          is_alternative?: boolean
+          material?: string | null
+          name?: string
+          price?: number
+          recycling?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "products_alternative_for_fkey"
+            columns: ["alternative_for"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          display_name: string | null
+          id: string
+        }
+        Insert: {
+          created_at?: string
+          display_name?: string | null
+          id: string
+        }
+        Update: {
+          created_at?: string
+          display_name?: string | null
+          id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
